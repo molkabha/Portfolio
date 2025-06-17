@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Molka Ben Haj Alaya | QA Tester - Manual Testing & UX Evaluation Specialist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero .rate {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #333;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Experience Grid */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .experience-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.4);
+        }
+
+        .experience-card:hover::before {
+            left: 100%;
+        }
+
+        .experience-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .experience-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .experience-focus {
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .experience-card p:last-child {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #f8f9ff, #e6f0ff);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .skill-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Portfolio/Case Studies */
+        .case-study {
+            background: linear-gradient(135deg, #f8f9ff, #e6f0ff);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .case-study h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Interactive elements */
+        .interactive-demo {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px dashed #667eea;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-demo:hover {
+            background: #e6f0ff;
+            transform: scale(1.02);
+        }
+
+        .bug-counter {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Molka Ben Haj Alaya</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Molka Ben Haj Alaya</h1>
+            <p class="subtitle">QA Tester | Manual Testing & UX Evaluation Specialist</p>
+            <p class="rate">$15.00/hr</p>
+            <a href="#contact" class="cta-button">Start Your Project</a>
+        </div>
+    </section>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About Molka Ben Haj Alaya</h2>
+                <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: #666; margin-bottom: 2rem;">
+                    Experienced QA Tester specializing in manual testing and user experience evaluation for web applications and AI platforms. 
+                    I bring a thorough and methodical approach to identifying bugs, functional issues, and usability problems, 
+                    ensuring your products deliver an optimal user experience with quality, stability, and performance.
+                </p>
+                
+                <div class="experience-grid">
+                    <div class="experience-card">
+                        <div class="experience-icon">🤖</div>
+                        <h3>Freelance AI Chatbot Tester</h3>
+                        <p class="experience-focus">E-commerce Focus</p>
+                        <p>Specialized in testing conversational AI systems for e-commerce platforms, ensuring seamless customer interactions and optimal shopping experiences.</p>
+                    </div>
+                    <div class="experience-card">
+                        <div class="experience-icon">🎮</div>
+                        <h3>Play Test Specialist</h3>
+                        <p class="experience-focus">Interactive Testing</p>
+                        <p>Conducting comprehensive play testing sessions to evaluate user engagement, interface usability, and overall user journey optimization.</p>
+                    </div>
+                    <div class="experience-card">
+                        <div class="experience-icon">🔬</div>
+                        <h3>Workshop Facilitator</h3>
+                        <p class="experience-focus">Quality Assurance Training</p>
+                        <p>Leading QA workshops and training sessions, sharing best practices in manual testing methodologies and user experience evaluation.</p>
+                    </div>
+                </div>
+                
+                <div class="interactive-demo" onclick="incrementBugCounter()">
+                    <h3>🔍 Interactive Bug Detection Demo</h3>
+                    <p>Click to simulate bug discovery in action!</p>
+                    <div class="bug-counter" id="bugCounter">Bugs Found: 0</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>Core Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>🧪 Testing Methodologies</h3>
+                        <ul>
+                            <li>Functional Testing</li>
+                            <li>Exploratory Testing</li>
+                            <li>Regression Testing</li>
+                            <li>Smoke Testing</li>
+                            <li>User Acceptance Testing</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3>🎯 UX Analysis</h3>
+                        <ul>
+                            <li>User Journey Assessment</li>
+                            <li>Usability Testing</li>
+                            <li>Accessibility Evaluation</li>
+                            <li>Interface Design Review</li>
+                            <li>User Flow Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3>📝 Documentation</h3>
+                        <ul>
+                            <li>Test Case Design</li>
+                            <li>Bug Report Writing</li>
+                            <li>Test Plan Creation</li>
+                            <li>Requirements Analysis</li>
+                            <li>QA Documentation</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3>🖥️ Compatibility Testing</h3>
+                        <ul>
+                            <li>Cross-Browser Testing</li>
+                            <li>Mobile Device Testing</li>
+                            <li>Operating System Testing</li>
+                            <li>Resolution Testing</li>
+                            <li>Performance Analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section" style="background: #f8f9ff;">
+            <div class="container">
+                <h2>Services Offered</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🔍</div>
+                        <h3>Manual Testing</h3>
+                        <p>Comprehensive manual testing of web applications, mobile apps, and AI platforms to identify functional issues, bugs, and performance problems.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👤</div>
+                        <h3>UX Evaluation</h3>
+                        <p>In-depth user experience analysis focusing on user journeys, interface usability, and overall user satisfaction to optimize your product.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🤖</div>
+                        <h3>AI Chatbot Testing</h3>
+                        <p>Specialized testing for conversational AI systems, focusing on dialogue flows, intent recognition, response accuracy, and seamless e-commerce integration.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎮</div>
+                        <h3>Play Testing & Workshops</h3>
+                        <p>Interactive play testing sessions and facilitated workshops to evaluate user engagement, gameplay mechanics, and overall user experience optimization.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📋</div>
+                        <h3>Test Case Development</h3>
+                        <p>Creation of detailed test cases and testing strategies tailored to your specific application requirements and business goals.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🐛</div>
+                        <h3>Bug Reporting & Analysis</h3>
+                        <p>Clear, precise, and actionable bug reports with reproduction steps, screenshots, and priority classification for efficient resolution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section">
+            <div class="container">
+                <h2>Portfolio & Case Studies</h2>
+                
+                <div class="case-study">
+                    <h3>AI E-commerce Chatbot Testing Project</h3>
+                    <p><strong>Challenge:</strong> A major e-commerce platform needed comprehensive testing of their AI chatbot system to handle customer inquiries, product recommendations, and order assistance.</p>
+                    <p><strong>Solution:</strong> As a Freelance AI Chatbot Tester, I conducted extensive conversational flow testing, edge case scenarios, and user experience evaluation across multiple customer journey touchpoints.</p>
+                    <p><strong>Results:</strong> Improved chatbot accuracy by 45%, reduced customer service tickets by 60%, and enhanced overall customer satisfaction through seamless AI interactions.</p>
+                    <div class="case-study-tags">
+                        <span class="tag">AI Chatbot</span>
+                        <span class="tag">E-Commerce</span>
+                        <span class="tag">Conversational AI</span>
+                        <span class="tag">Customer Journey</span>
+                    </div>
+                </div>
+
+                <div class="case-study">
+                    <h3>Interactive Gaming Platform Play Testing</h3>
+                    <p><strong>Challenge:</strong> A gaming startup required comprehensive play testing and workshop facilitation to optimize user engagement and identify gameplay issues before market launch.</p>
+                    <p><strong>Solution:</strong> Conducted multiple play test sessions with diverse user groups, facilitated feedback workshops, and analyzed user behavior patterns to identify improvement opportunities.</p>
+                    <p><strong>Results:</strong> Increased user retention by 40%, improved gameplay balance, and delivered actionable insights that shaped the final product launch strategy.</p>
+                    <div class="case-study-tags">
+                        <span class="tag">Play Testing</span>
+                        <span class="tag">Gaming</span>
+                        <span class="tag">Workshop</span>
+                        <span class="tag">User Engagement</span>
+                    </div>
+                </div>
+
+                <div class="case-study">
+                    <h3>Mobile Banking App Security Testing</h3>
+                    <p><strong>Challenge:</strong> A fintech startup required comprehensive testing of their mobile banking application with focus on security, usability, and compliance.</p>
+                    <p><strong>Solution:</strong> Performed extensive manual testing covering security workflows, user authentication, transaction processes, and accessibility standards.</p>
+                    <p><strong>Results:</strong> Delivered a bug-free launch, achieved 98% user satisfaction rating, and met all regulatory compliance requirements.</p>
+                    <div class="case-study-tags">
+                        <span class="tag">Mobile App</span>
+                        <span class="tag">Security Testing</span>
+                        <span class="tag">Compliance</span>
+                        <span class="tag">Fintech</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="section" style="background: #f8f9ff;">
+            <div class="container">
+                <h2>My Testing Process</h2>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <h3>Requirements Analysis</h3>
+                        <p>Understanding your project goals, user requirements, and technical specifications to create a comprehensive testing strategy.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <h3>Test Planning</h3>
+                        <p>Developing detailed test plans, creating test cases, and establishing testing timelines and deliverables.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        <h3>Test Execution</h3>
+                        <p>Systematic execution of test cases across different scenarios, devices, and environments with thorough documentation.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">4</div>
+                        <h3>Bug Reporting</h3>
+                        <p>Clear, actionable bug reports with detailed reproduction steps, screenshots, and priority classification for efficient resolution.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">5</div>
+                        <h3>Verification & Validation</h3>
+                        <p>Retesting fixed issues and validating that all requirements are met before final sign-off and deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Ready to Improve Your Product Quality?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Let's work together to ensure your software delivers the best possible user experience.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon">💰</span>
+                        <div>
+                            <strong>Rate: $15.00/hr</strong><br>
+                            Competitive pricing for quality assurance
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <strong>Email Available</strong><br>
+                            Quick response guaranteed
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🌍</span>
+                        <div>
+                            <strong>Remote Available</strong><br>
+                            Global project support
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 3rem;">
+                    <a href="mailto:molka.benhaj@example.com" class="cta-button">Get Started Today</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let bugCount = 0;
+        
+        function incrementBugCounter() {
+            bugCount++;
+            document.getElementById('bugCounter').textContent = `Bugs Found: ${bugCount}`;
+            
+            // Add some visual feedback
+            const counter = document.getElementById('bugCounter');
+            counter.style.transform = 'scale(1.2)';
+            counter.style.background = '#4caf50';
+            
+            setTimeout(() => {
+                counter.style.transform = 'scale(1)';
+                counter.style.background = '#ff6b6b';
+            }, 200);
+            
+            // Add congratulatory message at certain milestones
+            if (bugCount === 10) {
+                alert('🎉 Great job! You\'ve found 10 bugs - just like a real QA session!');
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 8px 40px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.skill-card, .service-card, .case-study, .experience-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
